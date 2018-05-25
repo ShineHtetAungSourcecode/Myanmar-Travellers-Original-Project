@@ -1,0 +1,86 @@
+﻿@model MyanmarTravellers.Models.Sale
+
+@{
+    ViewBag.Title = "CheckOut";
+}
+
+<h2>CheckOut</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Seat No.</th>
+            <th>Date</th>
+            <th>From</th>
+            <th>To</th>
+            <th>Departure Time.</th>
+            <th>Amount</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach(var ticket in ViewBag.Tickets)
+    {
+    <tr>
+        <td>@ticket.Seat.seat_no</td>
+        <td>@ticket.Course.date.ToShortDateString()</td>
+        <td>@ticket.Course.FromLocation.name</td>
+        <td>@ticket.Course.ToLocation.name</td>
+        <td>@ticket.Course.departure_time</td>
+        <td>@ticket.Course.fee_per_seat</td>
+    </tr>
+    }
+    <tr>
+        <td colspan="4"></td>
+        <td><strong>Total</strong></td>
+        <td>@ViewBag.Amount</td>
+    </tr>
+    
+</tbody>
+</table>
+
+<hr>
+
+<form action="/Sales/CheckOut" method="POST">
+
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label for="customer_name" class="control-label col-md-2">Customer Name</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.customer_name, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                @Html.ValidationMessageFor(model => model.customer_name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="nrc" class="control-label col-md-2">NRC</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.nrc, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                @Html.ValidationMessageFor(model => model.nrc, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="phone" class="control-label col-md-2">Phone</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.phone, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                @Html.ValidationMessageFor(model => model.phone, "", new { @class = "text-danger"})
+            </div>
+        </div>
+
+        @Html.HiddenFor(model => model.total, new { Value = ViewBag.Amount })
+        @Html.HiddenFor(model => model.course_id, new { Value = ViewBag.CourseID })
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button type="submit" class="btn btn-success">Checkout</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

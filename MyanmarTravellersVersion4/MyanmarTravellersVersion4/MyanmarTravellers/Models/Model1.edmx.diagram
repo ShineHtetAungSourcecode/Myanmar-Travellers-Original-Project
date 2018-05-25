@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="cd178f07f2a74d0b9e981bfbae3f828a" Name="Diagram1" ZoomLevel="52">
+        <EntityTypeShape EntityType="MMTravellersModel.Bus" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MMTravellersModel.BusLine" Width="1.5" PointX="1.5" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MMTravellersModel.Course" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="MMTravellersModel.Location" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MMTravellersModel.Seat" Width="1.5" PointX="5.25" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MMTravellersModel.Ticket" Width="1.5" PointX="7.5" PointY="1.5" IsExpanded="true" />
+        <AssociationConnector Association="MMTravellersModel.FK_Bus_BusLine" ManuallyRouted="false" />
+        <AssociationConnector Association="MMTravellersModel.FK_Bus_Seat" ManuallyRouted="false" />
+        <AssociationConnector Association="MMTravellersModel.FK_Course_Bus" ManuallyRouted="false" />
+        <AssociationConnector Association="MMTravellersModel.FK_Courses_From_Location" ManuallyRouted="false" />
+        <AssociationConnector Association="MMTravellersModel.FK_Courses_To_Location" ManuallyRouted="false" />
+        <AssociationConnector Association="MMTravellersModel.FK_Tickets_Courses" ManuallyRouted="false" />
+        <AssociationConnector Association="MMTravellersModel.FK_Tickets_Seats" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="MMTravellersModel.Sale" Width="1.5" PointX="5.25" PointY="1.375" />
+        <AssociationConnector Association="MMTravellersModel.FK_Sales_Courses" />
+        <AssociationConnector Association="MMTravellersModel.FK_Tickets_Sales" />
+        <EntityTypeShape EntityType="MMTravellersModel.C__MigrationHistory" Width="1.5" PointX="4.375" PointY="8.75" />
+        <EntityTypeShape EntityType="MMTravellersModel.AspNetRole" Width="1.5" PointX="7.375" PointY="7.5" />
+        <EntityTypeShape EntityType="MMTravellersModel.AspNetUserClaim" Width="1.5" PointX="11.875" PointY="6" />
+        <EntityTypeShape EntityType="MMTravellersModel.AspNetUserLogin" Width="1.5" PointX="11.875" PointY="8.75" />
+        <EntityTypeShape EntityType="MMTravellersModel.AspNetUser" Width="1.5" PointX="9.625" PointY="6.375" />
+        <AssociationConnector Association="MMTravellersModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="MMTravellersModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="MMTravellersModel.AspNetUserRoles" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

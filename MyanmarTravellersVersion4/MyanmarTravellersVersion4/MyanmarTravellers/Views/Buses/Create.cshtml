@@ -1,0 +1,65 @@
+﻿@model MyanmarTravellers.Models.Bus
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Bus</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+        <label for="plate_no" class="control-label col-md-2">Plate No.</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.plate_no, new { htmlAttributes = new { @class = "form-control", required="required"} })
+                @Html.ValidationMessageFor(model => model.plate_no, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="busline_id" class="control-label col-md-2">Busline</label>
+            <div class="col-md-10">
+                @Html.DropDownList("busline_id", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.busline_id, "", new { @class = "text-danger",required="required"})
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label for="seats_per_row" class="control-label col-md-2">Seats per Rows</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.seats_per_row, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.seats_per_row, "", new { @class = "text-danger", required="required" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="no_of_rows" class="control-label col-md-2">No of Rows</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.no_of_rows, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.no_of_rows, "", new { @class = "text-danger", required="required" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

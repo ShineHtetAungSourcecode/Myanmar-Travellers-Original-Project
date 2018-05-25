@@ -1,0 +1,63 @@
+﻿@model IEnumerable<MyanmarTravellers.Models.Sale>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Sales</h2>
+
+
+<form action="/Sales" method="GET" class="form-inline">
+    <div class="form-group">
+
+
+        <input type="number" name="busline_id" class="form-control"/>
+
+       
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Search</button>
+    <table class="table">
+    <tr>
+        <th>
+            Customer Name
+        </th>
+        <th>
+            NRC
+        </th>
+        <th>
+            Phone
+        </th>
+        <th>
+            Total
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.customer_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nrc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.phone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.total)
+        </td>
+        <td>
+            @Html.ActionLink("Details", "Details", new { id=item.id }, new {@class="btn btn-primary"})
+            @Html.ActionLink("Delete", "Delete", new { id=item.id }, new {@class="btn btn-primary"})
+        </td>
+    </tr>
+}
+
+</table>
+</form>
+
+
+

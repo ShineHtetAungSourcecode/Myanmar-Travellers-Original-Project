@@ -1,0 +1,92 @@
+﻿@* modified by Tun Thiha *@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Myanmar Travellers</title>
+    @Styles.Render("~/Content/css")
+    @RenderSection("styles", required: false)
+    @Scripts.Render("~/bundles/modernizr")
+    <style>
+        body {
+           
+            background-image: url('../../Content/imgs/back.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        .bg-primary {
+            background-color: #080808 !important;
+        }
+     .navbar-inverse .navbar-nav > li > a {
+    color: #ffdf00;
+}
+     .btn-primary {
+    background-color: #2d2c26 !important;
+    border-color: #2d2c26 !important;
+}
+     .btn-success {
+ 
+    background-color:  #2d2c26;
+    border-color:  #2d2c26;
+}
+
+    </style>
+
+
+    
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top bg-primary">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="@Url.Action("Index", "Home")">
+                    <img src="~/Content/imgs/mmtraveller.png" alt="" style="height:50px;" />
+                    
+                </a>
+
+            </div>
+            <div class="navbar-collapse collapse">
+                
+                    <ul class="nav navbar-nav">
+                        @if (Request.IsAuthenticated)
+                        {
+                            <li  > <a href="/BusLines" >BusLines</a> </li>
+                            <li> <a href="/Buses" >Buses</a> </li>
+                            <li> <a href="/Sales" >Sales</a> </li>
+                            <li> <a href="/Locations" >Cities</a> </li>
+                            <li> <a href="/Courses" >Routes</a> </li>
+                        }
+                        else
+                        {
+                        <li> <a href="/Home/Index">Home</a> </li>
+                        <li> <a href="/Home/About">About us</a> </li>
+                        <li> <a href="/Home/Contact">Contact us</a> </li>
+                        
+                        }
+                    </ul>
+                    @Html.Partial("_LoginPartial")
+                </div>
+            </div>
+        </div>
+    <div class="container body-content">
+        
+        <div style="min-height: 80vh;">
+                @RenderBody()
+            </div>
+        <hr /> 
+        <footer>
+        <p>&copy; @DateTime.Now.Year - Myanmar Travellers</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

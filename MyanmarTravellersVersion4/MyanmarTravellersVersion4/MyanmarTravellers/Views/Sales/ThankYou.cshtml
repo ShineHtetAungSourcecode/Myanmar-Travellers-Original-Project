@@ -1,0 +1,104 @@
+@model MyanmarTravellers.Models.Sale
+
+@{
+    ViewBag.Title = "Thank You";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Success!</h3>
+    </div>
+    <div class="panel-body">
+        The transaction was successful. Thank you for your purchase.
+    </div>
+</div>
+
+<div class="container-fluid" id="print_section">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6">Customer Name</div>
+                    <div class="col-md-6">@Html.DisplayFor(model => model.customer_name)</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">NRC</div>
+                    <div class="col-md-6">@Html.DisplayFor(model => model.nrc)</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">Phone</div>
+                    <div class="col-md-6">@Html.DisplayFor(model => model.phone)</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">Date</div>
+                    <div class="col-md-6">@Html.DisplayFor(model => model.Course.date)</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">Busline</div>
+                    <div class="col-md-6">@Html.DisplayFor(model => model.Course.Bus.BusLine.name)</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">Departure Time</div>
+                    <div class="col-md-6">@Html.DisplayFor(model => model.Course.departure_time)</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">Total</div>
+                    <div class="col-md-6">@Html.DisplayFor(model => model.total)</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <img src='@Url.Action("GenerateQR", new { sale_id = Model.id })' alt="" style="width: 150px">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Seat No.</th>
+                        <th>From</th>
+                        <th>To</th>
+                        <th>Car No.</th>
+                        <th>Fee Per Seat</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{ int i = 1;}
+                    @foreach(var ticket in Model.Tickets) {
+                    <tr>
+                        <th>@i</th>
+                        <th>@ticket.Seat.seat_no</th>
+                        <th>@ticket.Course.FromLocation.name</th>
+                        <th>@ticket.Course.ToLocation.name</th>
+                        <th>@ticket.Course.Bus.plate_no</th>
+                        <th>@ticket.Course.fee_per_seat</th>
+
+                    </tr>
+                    i++;
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<button class="btn btn-success" onclick="savePDF()">Download ticket</button>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/print");
+    <script>
+        function savePDF() {
+            html2canvas(document.querySelector("#print_section")).then(canvas => {
+
+                var imgData = canvas.toDataURL("image/png", 1.0);
+                var pdf = new jsPDF({
+                    orientation: 'landscape'
+                });
+                pdf.addImage(imgData, 'PNG', 10, 10, 280, 100);
+                pdf.save("download.pdf");
+            });
+        }
+    </script>
+}

@@ -1,0 +1,70 @@
+﻿@model IEnumerable<MyanmarTravellers.Models.Course>
+@using MyanmarTravellers.Models
+@{
+    ViewBag.Title = "Index";
+    MMTravellersEntities db = new MMTravellersEntities();
+}
+
+<h2>Search Routes</h2>
+
+@Html.Partial("~/Views/Courses/SearchPartial.cshtml")
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Date")
+        </th>
+       <th>
+           @Html.DisplayName("Bus Line")
+       </th>
+        <th>
+            @Html.DisplayName("Departure_Time")
+        </th>
+        
+        <th>
+            @Html.DisplayName("Plate_No")
+        </th>
+        <th>
+            @Html.DisplayName("From")
+        </th>
+        <th>
+            @Html.DisplayName("To")
+        </th>
+        <th>
+            @Html.DisplayName("Fee Per Seat")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bus.BusLine.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.departure_time)
+            </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.Bus.plate_no)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FromLocation.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ToLocation.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fee_per_seat)
+            </td>
+            <td>
+                @Html.ActionLink("Book", "Details", new { id = item.id }) 
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,100 @@
+﻿*, *:before, *:after {
+box-sizing: border-box;
+}
+
+html {
+font-size: 16px;
+}
+
+.bus {
+margin: 20px auto;
+width: max-content;
+border: 5px solid #444;
+border-radius: 5%;
+}
+
+.cockpit {
+height: 100px;
+position: relative;
+overflow: hidden;
+text-align: center;
+border-bottom: 5px solid #444;
+}
+
+.engine {
+height: 50px;
+position: relative;
+overflow: hidden;
+text-align: center;
+border-top: 5px solid #444;
+}
+
+.fuselage {
+border-right: 5px solid #444;
+border-left: 5px solid #444;
+}
+
+ol {
+list-style: none;
+padding: 0;
+margin: 0;
+}
+
+.seats {
+display: flex;
+flex-direction: row;
+flex-wrap: nowrap;
+justify-content: flex-start;
+}
+
+.seat {
+display: flex;
+padding: 5px;
+width: 60px;
+position: relative;
+}
+
+.seat:nth-child(2n) {
+margin-right: 50px;
+}
+
+.seat:last-child {
+    margin-right: 0% !important;
+}
+
+.seat input[type="checkbox"] {
+position: absolute;
+opacity: 0;
+}
+
+.seat input[type="checkbox"]:checked + label {
+background: #ff9900;
+}
+
+.seat input[type="checkbox"]:disabled + label {
+background: red;
+color: white;
+}
+
+.seat input[type="checkbox"]:disabled + label:hover {
+box-shadow: none;
+cursor: not-allowed;
+}
+
+.seat label {
+display: block;
+position: relative;
+width: 100%;
+text-align: center;
+font-size: 14px;
+font-weight: bold;
+line-height: 1.5rem;
+padding: 4px 0;
+background: #00e6ac;
+border-radius: 5px;
+}
+
+.seat label:hover {
+cursor: pointer;
+box-shadow: 0 0 0px 2px #666;
+}

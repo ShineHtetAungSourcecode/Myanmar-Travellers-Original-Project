@@ -1,0 +1,36 @@
+﻿<form action="/Courses/Search" class="container-fluid" style="padding-top: 10px">
+    <div class="form-group row">
+        <label for="date" class="col-md-4">
+            Date
+        </label>
+        <div class="col-md-8">
+            <input class="form-control" type="date" name="date" id="date" value="@ViewBag.OldDate" required>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-md-4" for="from">From</label>
+        <div class="col-md-8">
+            <select class="form-control" name="from" id="from" required>
+                @foreach(var l in ViewBag.Locations) 
+                {   
+                    
+                    <option value="@l.id" @(l.id.Equals(ViewBag.OldFrom)?"selected": "")>@l.name</option>
+                }
+            </select>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-md-4" for="to">To</label>
+        <div class="col-md-8">
+            <select class="form-control" name="to" id="to" required>
+                @foreach(var l in ViewBag.Locations) 
+                {   
+                    <option value="@l.id" @(l.id.Equals(ViewBag.OldTo)?"selected": "")>@l.name</option>
+                }
+            </select>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-success">
+        Search
+    </button>
+</form>
